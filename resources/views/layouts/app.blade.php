@@ -52,7 +52,7 @@
                         @endif
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Create An Article') }}</a>
+                            <a class="nav-link" href="{{ route('article.create') }}">{{ __('Create An Article') }}</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -80,9 +80,14 @@
 
     <main class="py-4">
         <div class="container">
-            @if (session('status'))
+            @if (session('success'))
                 <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('failed'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('failed') }}
                 </div>
             @endif
             @yield('content')

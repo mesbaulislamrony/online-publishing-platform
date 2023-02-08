@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="card mb-3">
-        <div class="card-header">Article Title Here</div>
-        <div class="card-body">
-            <p class="mb-0">Article Description Here</p>
-        </div>
-    </div>
-</div>
+    @if(!empty($articles))
+        @foreach($articles as $article)
+            <div class="card mb-3">
+                <div class="card-header">
+                    <p class="mb-0">{{ $article->title }}</p>
+                    <p class="mb-0">Published at : {{ $article->published_at }}</p>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">{{ $article->description }}</p>
+                </div>
+            </div>
+        @endforeach
+    @endif
 @endsection

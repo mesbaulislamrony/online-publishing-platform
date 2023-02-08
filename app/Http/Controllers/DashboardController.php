@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $data['articles'] = Article::orderBy('id', 'desc')->get();
+        return view('dashboard', $data);
     }
 }
