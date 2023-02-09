@@ -17,6 +17,31 @@ Laravel simple online publishing platform(something like medium) with a membersh
   <img src="https://img.shields.io/static/v1?label=Vue&message=3&color=red">
 </p>
 
+
+### Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/mesbaulislamrony/online-publishing-platform
+```
+
+Go to the project directory
+
+```bash
+  cd online-publishing-platform
+```
+
+Install dependencies
+
+```bash
+  composer update
+```
+
+```bash
+  npm install
+```
+
 ### Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
@@ -40,3 +65,19 @@ To run this project, you will need to add the following environment variables to
 `DB_USERNAME=your_database_username`
 
 `DB_PASSWORD=your_database_password`
+
+
+### Start the server
+
+```bash
+  npm run dev
+```
+
+```bash
+  php artisan serve
+```
+
+```bash
+  php artisan queue:listen --queue=article-scheduling
+```
+
