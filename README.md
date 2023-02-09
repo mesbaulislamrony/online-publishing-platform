@@ -9,7 +9,7 @@ Laravel simple online publishing platform(something like medium) with a membersh
 - Mailing (admin will receive mail once a member publishes a post.)
 
 
-### Tools & Technologies:
+### Tools & Technologies
 
 <p align="left">
   <img src="https://img.shields.io/static/v1?label=Laravel&message=^9.19&color=red">
