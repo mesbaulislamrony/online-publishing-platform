@@ -15,13 +15,18 @@ class Article extends Model
 
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'published_as', 'author_id'];
+    protected $fillable = ['title', 'description', 'date', 'time', 'published_as', 'author_id'];
 
     protected function updatedAt(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => Carbon::parse($value)->format('l M Y h:i A'),
         );
+    }
+
+    public function scopeDailyCounter($query)
+    {
+        return $query->where(['author_id' => auth()->user()->id, 'date' => Carbon::today()->format('Y-m-d')]);
     }
 
     public function author()

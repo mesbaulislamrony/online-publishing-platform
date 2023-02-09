@@ -27,6 +27,12 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->subscription_as == 'free') {
+            if (Article::dailyCounter()->count() == 2) {
+                session()->flash('failed', 'Your daily limit is over. Please upgrade your subscription plan.');
+                return redirect()->route('profile.show');
+            }
+        }
         $data['published_at'] = Carbon::now()->format('Y-m-d\TH:i');
         return view('article.create', $data);
     }
@@ -48,6 +54,8 @@ class ArticleController extends Controller
 
         try {
             $array['author_id'] = auth()->user()->id;
+            $array['date'] = Carbon::now()->format('Y-m-d');
+            $array['time'] = Carbon::now()->format('H:i:s');
             $article = Article::create($array);
 
             if (Cache::has('articles')) {
@@ -56,8 +64,13 @@ class ArticleController extends Controller
                 Cache::put('articles', $articles);
             }
 
+            $published_at = $request->published_at;
+            if (empty($request->published_at)) {
+                $published_at = Carbon::now()->format('Y-m-d H:i:s');
+            }
+
             ArticleSchedulingJob::dispatch($article->id)->onQueue('article-scheduling')->delay(
-                Carbon::parse($request->published_at)
+                Carbon::parse($published_at)
             );
 
             session()->flash('success', 'Your article has been create successful.');

@@ -18,6 +18,8 @@ return new class extends Migration {
                 $table->id();
                 $table->string('title');
                 $table->text('description');
+                $table->date('date');
+                $table->time('time');
                 $table->enum('published_as', ['draft', 'scheduling', 'published'])->default('scheduling');
                 $table->integer('author_id');
                 $table->timestamps();
