@@ -14,7 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data['articles'] = Article::orderBy('id', 'desc')->get();
+        $data['articles'] = Article::where(['author_id' => auth()->user()->id])->orderBy('id', 'desc')->get();
         return view('dashboard', $data);
     }
 }

@@ -34,27 +34,30 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <p class="mb-0">Choose your subscription plan</p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="free" class="card-body">
-                                        <p>
-                                            <input type="radio" id="free" name="subscription_as" value="free">
-                                            <strong>Free</strong>
-                                        </p>
-                                        <p>You can post maximum two articles per day</p>
-                                    </label>
+                        <div class="row mb-3">
+                            <label for="plan" class="col-md-4 col-form-label text-md-end">{{ __('Choose your subscription plan') }}</label>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="free" class="card card-body">
+                                            <p>
+                                                <input type="radio" id="free" name="subscription_as" value="free" checked>
+                                                <strong>Free</strong>
+                                            </p>
+                                            <p>You can post maximum two articles daily.</p>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="premium" class="card card-body">
+                                            <p>
+                                                <input type="radio" id="premium" name="subscription_as" value="premium">
+                                                <strong>Premium</strong>
+                                            </p>
+                                            <p>You can post unlimited articles.</p>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="premium" class="card-body">
-                                        <p>
-                                            <input type="radio" id="premium" name="subscription_as" value="premium">
-                                            <strong>Premium</strong>
-                                        </p>
-                                        <p>You can post unlimited articles per day</p>
-                                    </label>
-                                </div>
+                                <p><em>{{ __('n.b: Anytime you can upgrade & downgrade after purchase a plan.') }}</em></p>
                             </div>
                         </div>
 
