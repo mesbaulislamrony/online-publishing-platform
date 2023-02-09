@@ -44,7 +44,8 @@
                                                 <input type="radio" id="free" name="subscription_as" value="free" checked>
                                                 <strong>Free</strong>
                                             </p>
-                                            <p>You can post maximum two articles daily.</p>
+                                            <p>You can post max two articles daily.</p>
+                                            <p class="mb-0">0 TK</p>
                                         </label>
                                     </div>
                                     <div class="col-md-6">
@@ -54,10 +55,11 @@
                                                 <strong>Premium</strong>
                                             </p>
                                             <p>You can post unlimited articles.</p>
+                                            <p class="mb-0">10 TK</p>
                                         </label>
                                     </div>
                                 </div>
-                                <p><em>{{ __('n.b: Anytime you can upgrade & downgrade after purchase a plan.') }}</em></p>
+                                <p class="text-muted mb-0"><em>{{ __('Note: You can upgrade & downgrade your subscription plan') }}</em></p>
                             </div>
                         </div>
 

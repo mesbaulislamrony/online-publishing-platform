@@ -409,6 +409,7 @@
                 <div class="p-6">
                     <div class="text-lg leading-7 font-semibold">
                         <a href="" class="underline text-gray-900 dark:text-white">{{ $article->title }}</a>
+                        <p style="margin: 0" class="text-sm">Published Date : {{ $article->updated_at }}</p>
                     </div>
                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">{{ $article->description }}</div>
                 </div>

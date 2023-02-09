@@ -24,7 +24,7 @@
                             <strong>Free</strong>
                         </p>
                         <p>You can post max two articles daily.</p>
-                        <p>0 TK</p>
+                        <p class="mb-0">0 TK</p>
                     </label>
                 </div>
                 <div class="col-md-6">
@@ -34,7 +34,7 @@
                             <strong>Premium</strong>
                         </p>
                         <p>You can post unlimited articles.</p>
-                        <p>10 TK</p>
+                        <p class="mb-0">10 TK</p>
                     </label>
                 </div>
             </div>
