@@ -2,19 +2,21 @@
 
 namespace App\Jobs;
 
+use App\Mail\SendArticleToAdminMail;
 use App\Models\Article;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class ArticleSchedulingJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $id;
+
     /**
      * Create a new job instance.
      *
@@ -32,6 +34,8 @@ class ArticleSchedulingJob implements ShouldQueue
      */
     public function handle()
     {
-        Article::find($this->id)->update(['published_as' => Article::published]);
+        Article::where(['id' => $this->id])->update(['published_as' => Article::published]);
+        $article = Article::find($this->id);
+        Mail::to('mesbaul.cse26@gmail.com')->send(new SendArticleToAdminMail($article));
     }
 }

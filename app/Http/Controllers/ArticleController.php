@@ -46,10 +46,11 @@ class ArticleController extends Controller
         );
 
         try {
-
             $array['author_id'] = auth()->user()->id;
             $article = Article::create($array);
-            ArticleSchedulingJob::dispatch($article->id)->onQueue('article-scheduling')->delay(Carbon::parse($request->published_at));
+            ArticleSchedulingJob::dispatch($article->id)->onQueue('article-scheduling')->delay(
+                Carbon::parse($request->published_at)
+            );
 
             session()->flash('success', 'Your article has been create successful.');
         } catch (\Throwable $throwable) {

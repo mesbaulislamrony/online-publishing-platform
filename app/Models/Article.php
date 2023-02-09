@@ -15,12 +15,17 @@ class Article extends Model
 
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'author_id'];
+    protected $fillable = ['title', 'description', 'published_as', 'author_id'];
 
-    protected function createdAt(): Attribute
+    protected function updatedAt(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => Carbon::parse($value)->format('l M Y h:i A'),
         );
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id', 'id');
     }
 }
