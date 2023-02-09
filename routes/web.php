@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,12 @@ Route::middleware('auth')->group(
             function () {
                 Route::get('/create', [ArticleController::class, 'create'])->name('article.create');
                 Route::post('/store', [ArticleController::class, 'store'])->name('article.store');
+            }
+        );
+        Route::prefix('profile')->group(
+            function () {
+                Route::get('/', [ProfileController::class, 'show'])->name('profile.show');
+                Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
             }
         );
     }
