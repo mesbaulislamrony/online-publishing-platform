@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ArticleSchedulingJob;
 use App\Models\Article;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -47,15 +48,17 @@ class ArticleController extends Controller
 
         try {
 
-            if ($request->published_as == 'scheduling'){
-
-            }
             $array['author_id'] = auth()->user()->id;
             $article = Article::create($array);
 
-            session()->flash('success', 'Article has been create successful.');
+            if ($request->published_as == 'scheduling'){
+                $scheduling = Carbon::parse($request->published_at);
+                ArticleSchedulingJob::dispatch($article->id)->onQueue('article-scheduling')->delay($scheduling);
+            }
+
+            session()->flash('success', 'Your article has been create successful.');
         } catch (\Throwable $throwable) {
-            session()->flash('failed', 'Article has been create failed.');
+            session()->flash('failed', 'Your article has been create failed.');
         }
         return redirect()->route('article.create');
     }

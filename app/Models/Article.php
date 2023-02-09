@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     const draft = 'draft';
+    const scheduling = 'scheduling';
     const published = 'published';
 
     use HasFactory;
