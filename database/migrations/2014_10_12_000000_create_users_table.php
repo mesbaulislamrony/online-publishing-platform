@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('subscription_as', ['free', 'premium'])->default('free');
-            $table->string('role');
+            $table->string('role')->default('member');
             $table->rememberToken();
             $table->timestamps();
         });
