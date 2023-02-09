@@ -42,7 +42,6 @@ class ArticleController extends Controller
             [
                 'title' => 'required|string',
                 'description' => 'nullable',
-                'published_as' => 'required|string',
             ]
         );
 
@@ -50,11 +49,7 @@ class ArticleController extends Controller
 
             $array['author_id'] = auth()->user()->id;
             $article = Article::create($array);
-
-            if ($request->published_as == 'scheduling'){
-                $scheduling = Carbon::parse($request->published_at);
-                ArticleSchedulingJob::dispatch($article->id)->onQueue('article-scheduling')->delay($scheduling);
-            }
+            ArticleSchedulingJob::dispatch($article->id)->onQueue('article-scheduling')->delay(Carbon::parse($request->published_at));
 
             session()->flash('success', 'Your article has been create successful.');
         } catch (\Throwable $throwable) {
