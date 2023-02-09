@@ -41,13 +41,16 @@ class ArticleController extends Controller
             [
                 'title' => 'required|string',
                 'description' => 'nullable',
-                'published_at' => 'required'
+                'published_as' => 'required|string',
             ]
         );
 
         try {
+
+            if ($request->published_as == 'scheduling'){
+
+            }
             $array['author_id'] = auth()->user()->id;
-            $array['published_at'] = Carbon::parse($array['published_at'])->format('Y-m-d H:i:s');
             $article = Article::create($array);
 
             session()->flash('success', 'Article has been create successful.');

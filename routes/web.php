@@ -16,13 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get(
-    '/',
-    function () {
-        $data['articles'] = Article::orderBy('id', 'desc')->get();
-        return view('articles', $data);
-    }
-);
+Route::get('/', function () {
+    $data['articles'] = Article::orderBy('id', 'desc')->get();
+    return view('articles', $data);
+});
 
 Auth::routes();
 

@@ -18,7 +18,8 @@
                     <label for="published_at" class="form-label">Published at</label>
                     <input type="datetime-local" class="form-control" id="published_at" value="{{ $published_at }}" name="published_at">
                 </div>
-                <button type="submit" class="btn btn-success">Published</button>
+                <button type="submit" class="btn btn-success" name="published_as" value="scheduling">Scheduling</button>
+                <button type="submit" class="btn btn-warning" name="published_as" value="published">Published</button>
                 <a href="{{ route('dashboard') }}" class="btn btn-danger">Cancel</a>
             </form>
         </div>
