@@ -16,3 +16,27 @@ Laravel simple online publishing platform(something like medium) with a membersh
   <img src="https://img.shields.io/static/v1?label=Bootstrap&message=4&color=">
   <img src="https://img.shields.io/static/v1?label=Vue&message=3&color=red">
 </p>
+
+### Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`CACHE_DRIVER=database`
+
+`QUEUE_CONNECTION=database`
+
+`MAIL_MAILER=smtp`
+
+`MAIL_HOST=sandbox.smtp.mailtrap.io`
+
+`MAIL_PORT=2525`
+
+`MAIL_USERNAME=your_username`
+
+`MAIL_PASSWORD=your_password`
+
+`DB_DATABASE=your_database_name`
+
+`DB_USERNAME=your_database_username`
+
+`DB_PASSWORD=your_database_password`
