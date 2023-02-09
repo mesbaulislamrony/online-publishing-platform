@@ -6,6 +6,7 @@ use App\Jobs\ArticleSchedulingJob;
 use App\Models\Article;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ArticleController extends Controller
 {
@@ -48,6 +49,13 @@ class ArticleController extends Controller
         try {
             $array['author_id'] = auth()->user()->id;
             $article = Article::create($array);
+
+            if (Cache::has('articles')) {
+                $articles = Cache::get('articles');
+                $articles->prepend($article);
+                Cache::put('articles', $articles);
+            }
+
             ArticleSchedulingJob::dispatch($article->id)->onQueue('article-scheduling')->delay(
                 Carbon::parse($request->published_at)
             );

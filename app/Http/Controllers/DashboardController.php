@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
 {
@@ -14,7 +14,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data['articles'] = Article::where(['author_id' => auth()->user()->id])->orderBy('id', 'desc')->get();
+        $data['articles'] = Cache::rememberForever(
+            'articles',
+            function () {
+                return Article::where(['author_id' => auth()->user()->id])->orderBy('id', 'desc')->get();
+            }
+        );
         return view('dashboard', $data);
     }
 }
