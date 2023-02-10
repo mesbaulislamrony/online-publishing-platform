@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Plan;
 
 class ProfileController extends Controller
 {
     public function show()
     {
-        return view('profile.show');
+        $data['stripe_id'] = null;
+        if (auth()->user()->subscribed()) {
+            $data['stripe_id'] = auth()->user()->subscription()->stripe_price;
+        }
+        $data['plans'] = Plan::orderBy('id', 'asc')->get();
+        return view('profile.show', $data);
     }
 
     public function update(Request $request)
@@ -19,16 +25,8 @@ class ProfileController extends Controller
                 'subscription_as' => ['required', 'string'],
             ]
         );
-
-        try {
-
-            User::where(['id' => auth()->user()->id])->update($array);
-
-            session()->flash('success', 'Your subscription plan has been updated successful.');
-        } catch (\Throwable $throwable) {
-            session()->flash('failed', 'Your subscription plan has been updated failed.');
-        }
-        return redirect()->route('profile.show');
+        $data['plans'] = Plan::orderBy('id', 'asc')->get();
+        return view('profile.show', $data);
 
     }
 }

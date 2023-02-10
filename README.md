@@ -81,3 +81,20 @@ To run this project, you will need to add the following environment variables to
   php artisan queue:listen --queue=article-scheduling
 ```
 
+### Card Reference
+
+```bash
+  4242 4242 4242 4242
+```
+
+```bash
+  04 / 28
+```
+
+```bash
+  123
+```
+
+```bash
+  40248
+```

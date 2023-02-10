@@ -22,12 +22,33 @@ class DatabaseSeeder extends Seeder
                 'email' => 'mesbaul.cse26@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make(12345678),
-                'subscription_as' => 'premium',
                 'remember_token' => Str::random(10),
                 'role' => 'admin',
             ]
         );
 
-        \App\Models\User::factory(9)->create();
+        \App\Models\User::factory(2)->create();
+
+        \App\Models\Plan::factory()->create(
+            [
+                'name' => 'Free',
+                'slug' => 'free',
+                'stripe_id' => 'price_1Ma2uBBAFeyXlJjaVNt3QV6V',
+                'price' => '0',
+                'currency' => env('CASHIER_CURRENCY'),
+                'description' => 'You can create 2 posts daily but you\'re not able to scheduling your posts.'
+            ]
+        );
+
+        \App\Models\Plan::factory()->create(
+            [
+                'name' => 'Premium',
+                'slug' => 'premium',
+                'stripe_id' => 'price_1Ma2umBAFeyXlJjaJKLfRgZr',
+                'price' => '10',
+                'currency' => env('CASHIER_CURRENCY'),
+                'description' => 'You can create unlimited posts and you\'re able to scheduling your posts.'
+            ]
+        );
     }
 }

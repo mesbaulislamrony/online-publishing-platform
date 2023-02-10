@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PaymentController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +35,13 @@ Route::middleware('auth')->group(
         Route::prefix('profile')->group(
             function () {
                 Route::get('/', [ProfileController::class, 'show'])->name('profile.show');
-                Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
+            }
+        );
+
+        Route::prefix('subscription/payments')->group(
+            function () {
+                Route::post('/', [PaymentController::class, 'index'])->name('payments');
+                Route::post('/store', [PaymentController::class, 'store'])->name('payments.store');
             }
         );
     }
