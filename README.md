@@ -13,8 +13,7 @@ Laravel simple online publishing platform(something like medium) with a membersh
 
 <p align="left">
   <img src="https://img.shields.io/static/v1?label=Laravel&message=^9.19&color=red">
-  <img src="https://img.shields.io/static/v1?label=Bootstrap&message=4&color=">
-  <img src="https://img.shields.io/static/v1?label=Vue&message=3&color=red">
+  <img src="https://img.shields.io/static/v1?label=Bootstrap&message=5.3.0-alpha1&color=">
 </p>
 
 
@@ -71,7 +70,6 @@ For stripe
 ```bash
 FREE_PLAN_STRIP_ID=your-free-plan-stripe-id
 PREMIUM_PLAN_STRIP_ID=your-premium-plan-stripe-id
-CASHIER_CURRENCY=your-currency
 STRIPE_KEY=your-stripe-key
 STRIPE_SECRET=your-stripe-secret
 STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
