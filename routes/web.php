@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/subscription', [HomeController::class, 'subscription'])->name('subscription');
 
 Auth::routes();
 
@@ -35,12 +36,13 @@ Route::middleware('auth')->group(
         Route::prefix('profile')->group(
             function () {
                 Route::get('/', [ProfileController::class, 'show'])->name('profile.show');
+                Route::get('/subscription', [ProfileController::class, 'subscription'])->name('profile.subscription');
             }
         );
 
         Route::prefix('subscription/payments')->group(
             function () {
-                Route::post('/', [PaymentController::class, 'index'])->name('payments');
+                Route::get('/', [PaymentController::class, 'index'])->name('payments');
                 Route::post('/store', [PaymentController::class, 'store'])->name('payments.store');
             }
         );

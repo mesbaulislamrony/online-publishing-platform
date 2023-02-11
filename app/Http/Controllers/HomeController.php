@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Plan;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -16,5 +17,11 @@ class HomeController extends Controller
             }
         );
         return view('articles', $data);
+    }
+
+    public function subscription()
+    {
+        $data['plans'] = Plan::orderBy('id', 'asc')->get();
+        return view('auth.subscription', $data);
     }
 }

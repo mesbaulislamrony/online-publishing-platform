@@ -385,7 +385,7 @@
         }
     </style>
 </head>
-<body class="relative items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+<body class="relative items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
     <div class="flex items-center justify-between pt-8 sm:justify-between sm:pt-0">
         <h1>{{ config('app.name', 'Laravel') }}</h1>
@@ -396,7 +396,7 @@
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
+                        <a href="{{ route('subscription') }}"
                            class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                     @endif
                 @endauth

@@ -10,23 +10,14 @@ class ProfileController extends Controller
 {
     public function show()
     {
-        $data['stripe_id'] = null;
-        if (auth()->user()->subscribed()) {
-            $data['stripe_id'] = auth()->user()->subscription()->stripe_price;
-        }
-        $data['plans'] = Plan::orderBy('id', 'asc')->get();
+        $data['plan'] = Plan::where('stripe_id', auth()->user()->subscription()->stripe_price)->first();
         return view('profile.show', $data);
     }
 
-    public function update(Request $request)
+    public function subscription()
     {
-        $array = $request->validate(
-            [
-                'subscription_as' => ['required', 'string'],
-            ]
-        );
+        $data['currently_plan'] = Plan::where('stripe_id', auth()->user()->subscription()->stripe_price)->first();
         $data['plans'] = Plan::orderBy('id', 'asc')->get();
-        return view('profile.show', $data);
-
+        return view('profile.subscription', $data);
     }
 }

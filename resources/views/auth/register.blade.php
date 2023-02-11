@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -37,28 +36,12 @@
                         <div class="row mb-3">
                             <label for="plan" class="col-md-4 col-form-label text-md-end">{{ __('Choose your subscription plan') }}</label>
                             <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="free" class="card card-body">
-                                            <p>
-                                                <input type="radio" id="free" name="subscription_as" value="free" checked>
-                                                <strong>Free</strong>
-                                            </p>
-                                            <p>You can post max two articles daily.</p>
-                                            <p class="mb-0">0 TK</p>
-                                        </label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="premium" class="card card-body">
-                                            <p>
-                                                <input type="radio" id="premium" name="subscription_as" value="premium">
-                                                <strong>Premium</strong>
-                                            </p>
-                                            <p>You can post unlimited articles.</p>
-                                            <p class="mb-0">10 TK</p>
-                                        </label>
-                                    </div>
-                                </div>
+                                <label for="{{ $plan->slug }}" class="card card-body">
+                                    <p>
+                                        <strong>{{ $plan->name }} ({{ $plan->price }} {{ $plan->currency }})</strong>
+                                    </p>
+                                    <p class="mb-0">{{ $plan->description }}</p>
+                                </label>
                                 <p class="text-muted mb-0"><em>{{ __('Note: You can upgrade & downgrade your subscription plan') }}</em></p>
                             </div>
                         </div>
@@ -92,5 +75,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
