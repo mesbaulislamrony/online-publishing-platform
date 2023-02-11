@@ -19,7 +19,6 @@ Laravel simple online publishing platform(something like medium) with a membersh
   <img src="https://img.shields.io/static/v1?label=Bootstrap&message=5.3.0-alpha1&color=">
 </p>
 
-
 ### Run Locally
 
 Clone the project
@@ -81,12 +80,22 @@ STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
 ### Start the server
 
 ```bash
+  php artisan migrate
+  php artisan db:seed
+```
+```bash
   php artisan serve
 ```
-
 ```bash
   php artisan queue:listen --queue=article-scheduling
 ```
+
+### Demo Credential
+
+| Role | Email | Password (Default) |
+| :-------- | :-------- | :-------- |
+| `admin` | `johndoe@mail.com` | `12345678` |
+
 
 ### Card Reference
 
