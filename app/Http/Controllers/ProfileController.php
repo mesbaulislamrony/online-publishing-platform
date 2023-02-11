@@ -8,16 +8,26 @@ use App\Models\Plan;
 
 class ProfileController extends Controller
 {
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function show()
     {
-        $data['plan'] = Plan::where('stripe_id', auth()->user()->subscription()->stripe_price)->first();
+        $data['stripe_price'] = auth()->user()->subscription()->stripe_price;
         return view('profile.show', $data);
     }
 
-    public function subscription()
+    public function migrate(Request $request)
     {
-        $data['currently_plan'] = Plan::where('stripe_id', auth()->user()->subscription()->stripe_price)->first();
-        $data['plans'] = Plan::orderBy('id', 'asc')->get();
-        return view('profile.subscription', $data);
+        $this->validate($request, [
+            'subscription_as' => 'required'
+        ]);
+
+        auth()->user()->subscription('default')->swap($request->subscription_as);
+        session()->flash('success', 'Your subscription plan has been updated successful.');
+        return redirect()->route('profile.show');
     }
 }

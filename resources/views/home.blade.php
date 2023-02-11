@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-4 d-flex justify-content-between align-items-center">
-    <h4>{{ __('Your articles') }}</h4>
-    <a href="{{ route('article.create') }}" class="btn btn-warning">{{ __('Create article') }}</a>
-</div>
 @if(!empty($articles))
     @foreach($articles as $article)
         <div class="mb-4">

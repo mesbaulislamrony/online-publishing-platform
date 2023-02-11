@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $data['articles'] = Cache::rememberForever(
@@ -16,12 +21,6 @@ class HomeController extends Controller
                 return Article::where(['published_as' => Article::published])->orderBy('id', 'desc')->get();
             }
         );
-        return view('articles', $data);
-    }
-
-    public function subscription()
-    {
-        $data['plans'] = Plan::orderBy('id', 'asc')->get();
-        return view('auth.subscription', $data);
+        return view('home', $data);
     }
 }

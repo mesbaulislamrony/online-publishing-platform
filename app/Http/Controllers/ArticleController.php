@@ -27,8 +27,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        if (auth()->user()->subscription_as == 'free') {
-            if (Article::dailyCounter()->count() == 2) {
+        if (auth()->user()->subscription()->stripe_price == env('FREE_PLAN_STRIP_ID')) {
+            if (Article::dailyCounter()->count() >= 2) {
                 session()->flash('failed', 'Your daily limit is over. Please upgrade your subscription plan.');
                 return redirect()->route('profile.show');
             }

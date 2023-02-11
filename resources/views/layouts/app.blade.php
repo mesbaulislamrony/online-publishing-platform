@@ -15,6 +15,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://js.stripe.com/v3/"></script>
     <style type="text/css">
+    a{
+        text-decoration: none;
+    }
     .StripeElement {
         background-color: white;
         padding: 8px 12px;
@@ -53,12 +56,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
-                    @guest
-                    @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('profile.subscription') }}">{{ __('Migrate Plan') }}</a>
-                    </li>
-                    @endguest
+                    
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -78,7 +76,10 @@
                         @endif
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('article.create') }}">{{ __('Create An Article') }}</a>
+                            <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Your articles') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profile.show') }}">{{ __('Migrate plan') }}</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

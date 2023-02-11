@@ -36,14 +36,7 @@ Route::middleware('auth')->group(
         Route::prefix('profile')->group(
             function () {
                 Route::get('/', [ProfileController::class, 'show'])->name('profile.show');
-                Route::get('/subscription', [ProfileController::class, 'subscription'])->name('profile.subscription');
-            }
-        );
-
-        Route::prefix('subscription/payments')->group(
-            function () {
-                Route::get('/', [PaymentController::class, 'index'])->name('payments');
-                Route::post('/store', [PaymentController::class, 'store'])->name('payments.store');
+                Route::post('/migrate', [ProfileController::class, 'migrate'])->name('profile.migrate');
             }
         );
     }

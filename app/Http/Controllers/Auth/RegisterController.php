@@ -54,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'subscription_as' => ['required'],
         ]);
     }
 
@@ -67,7 +68,7 @@ class RegisterController extends Controller
     {
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
-        $user->newSubscription('default', env('FREE_PLAN_STRIP_ID'))->create();
+        $user->newSubscription('default', $data['subscription_as'])->create();
         return $user;
     }
 }
