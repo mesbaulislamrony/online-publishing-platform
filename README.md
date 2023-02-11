@@ -5,14 +5,17 @@ Laravel simple online publishing platform(something like medium) with a membersh
 ### Features
 - Create Post (members will be able to create posts based on their membership quota.)
 - Membership Plan (free members can update to the premium plan and premium members can downgrade to the free plan)
-- Scheduling (premium members will be able to schedule their posts and the posts will be automatically published at their scheduled time.)
-- Mailing (admin will receive mail once a member publishes a post.)
+- Scheduling (premium members will be able to schedule their posts and the posts will be automatically published at their scheduled time)
+- Mailing (admin will receive mail once a member publishes a post)
+- Cache (Posts are loaded using Laravel cache)
 
 
 ### Tools & Technologies
 
 <p align="left">
+  <img src="https://img.shields.io/static/v1?label=PHP&message=^8.0.2&color=red">
   <img src="https://img.shields.io/static/v1?label=Laravel&message=^9.19&color=red">
+  <img src="https://img.shields.io/static/v1?label=Stripe&message=^14.8&color=">
   <img src="https://img.shields.io/static/v1?label=Bootstrap&message=5.3.0-alpha1&color=">
 </p>
 
