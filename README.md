@@ -38,40 +38,46 @@ Install dependencies
   composer update
 ```
 
-```bash
-  npm install
-```
-
 ### Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`CACHE_DRIVER=database`
+For cache and queue
+```bash
+CACHE_DRIVER=database
+QUEUE_CONNECTION=database
+```
 
-`QUEUE_CONNECTION=database`
-
-`MAIL_MAILER=smtp`
-
-`MAIL_HOST=sandbox.smtp.mailtrap.io`
-
-`MAIL_PORT=2525`
-
-`MAIL_USERNAME=your_username`
-
-`MAIL_PASSWORD=your_password`
-
-`DB_DATABASE=your_database_name`
-
-`DB_USERNAME=your_database_username`
-
-`DB_PASSWORD=your_database_password`
-
-
-### Start the server
+For mailer
 
 ```bash
-  npm run dev
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
 ```
+
+For database
+
+```bash
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+```
+
+For stripe
+
+```bash
+FREE_PLAN_STRIP_ID=your-free-plan-stripe-id
+PREMIUM_PLAN_STRIP_ID=your-premium-plan-stripe-id
+CASHIER_CURRENCY=your-currency
+STRIPE_KEY=your-stripe-key
+STRIPE_SECRET=your-stripe-secret
+STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
+```
+
+### Start the server
 
 ```bash
   php artisan serve
