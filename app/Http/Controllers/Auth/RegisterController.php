@@ -54,7 +54,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'subscription_as' => ['required', 'string'],
         ]);
     }
 
@@ -67,12 +66,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data['password'] = Hash::make($data['password']);
-        return User::create($data);
-    }
-
-    public function showRegistrationForm()
-    {
-        $data['plan'] = Plan::where('slug', request('plan'))->first();
-        return view('auth.register', $data);
+        $user = User::create($data);
+        $user->newSubscription('default', env('FREE_PLAN_STRIP_ID'))->create();
+        return $user;
     }
 }

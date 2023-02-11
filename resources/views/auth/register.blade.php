@@ -32,20 +32,7 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <label for="plan" class="col-md-4 col-form-label text-md-end">{{ __('Choose your subscription plan') }}</label>
-                            <div class="col-md-6">
-                                <label for="{{ $plan->slug }}" class="card card-body">
-                                    <p>
-                                        <strong>{{ $plan->name }} ({{ $plan->price }} {{ $plan->currency }})</strong>
-                                    </p>
-                                    <p class="mb-0">{{ $plan->description }}</p>
-                                </label>
-                                <p class="text-muted mb-0"><em>{{ __('Note: You can upgrade & downgrade your subscription plan') }}</em></p>
-                            </div>
-                        </div>
-
+                        
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
                             <div class="col-md-6">
