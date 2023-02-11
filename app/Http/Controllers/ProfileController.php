@@ -16,7 +16,10 @@ class ProfileController extends Controller
      */
     public function show()
     {
-        $data['stripe_price'] = auth()->user()->subscription()->stripe_price;
+        $data['stripe_price'] = null;
+        if (auth()->user()->subscribed('default')) {
+            $data['stripe_price'] = auth()->user()->subscription()->stripe_price;
+        }
         return view('profile.show', $data);
     }
 
@@ -26,7 +29,11 @@ class ProfileController extends Controller
             'subscription_as' => 'required'
         ]);
 
-        auth()->user()->subscription('default')->swap($request->subscription_as);
+        if (auth()->user()->subscribed('default')) {
+            auth()->user()->subscription('default')->swap($request->subscription_as);
+        } else {
+            auth()->user()->newSubscription('default', $request->subscription_as)->create();
+        }
         session()->flash('success', 'Your subscription plan has been updated successful.');
         return redirect()->route('profile.show');
     }
