@@ -36,6 +36,7 @@ Route::middleware('auth')->group(
         Route::prefix('profile')->group(
             function () {
                 Route::get('/', [ProfileController::class, 'show'])->name('profile.show');
+                Route::post('/payment', [ProfileController::class, 'payment'])->name('profile.payment');
                 Route::post('/migrate', [ProfileController::class, 'migrate'])->name('profile.migrate');
             }
         );

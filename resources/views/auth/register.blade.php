@@ -29,41 +29,6 @@
         </div>
 
         <div class="row mb-3">
-            <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Choose your subscription plan') }}</label>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="free" class="card card-body">
-                            <p>
-                                <input type="radio" id="free" name="subscription_as" value="{{ env('FREE_PLAN_STRIP_ID') }}" {{ (old('subscription_as') == env('FREE_PLAN_STRIP_ID')) ? 'checked' : '' }} checked>
-                                <strong>Free</strong>
-                            </p>
-                            <p class="">
-                                <small>{{ __('You can create 2 posts daily and you\'re not able to scheduling your posts.') }}</small>
-                            </p>
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="premium" class="card card-body">
-                            <p>
-                                <input type="radio" id="premium" name="subscription_as" value="{{ env('PREMIUM_PLAN_STRIP_ID') }}" {{ (old('subscription_as') == env('PREMIUM_PLAN_STRIP_ID')) ? 'checked' : '' }}>
-                                <strong>Premium</strong>
-                            </p>
-                            <p class="">
-                                <small>{{ __('You can create unlimited posts and you\'re able to scheduling your posts.') }}</small>
-                            </p>
-                        </label>
-                    </div>
-                </div>
-                @error('subscription_as')
-                    <p class="text-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </p>
-                @enderror
-            </div>
-        </div>
-        
-        <div class="row mb-3">
             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
             <div class="col-md-6">
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">

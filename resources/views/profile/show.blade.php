@@ -4,7 +4,7 @@
 <div class="mb-4 d-flex justify-content-between align-items-center">
     <h4>{{ __('Your profile') }}</h4>
 </div>
-<form class="card card-body border-0" method="POST" action="{{ route('profile.migrate') }}">
+<form class="card card-body border-0" method="POST" action="{{ route('profile.payment') }}">
     @csrf
     <div class="row mb-3">
         <label for="name" class="col-md-4 text-md-end">{{ __('Name') }}</label>

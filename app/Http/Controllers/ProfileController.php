@@ -23,16 +23,37 @@ class ProfileController extends Controller
         return view('profile.show', $data);
     }
 
+    public function payment(Request $request)
+    {
+        $data = $this->validate($request, [
+            'subscription_as' => 'required'
+        ]);
+
+        if (in_array(env('FREE_PLAN_STRIP_ID'), $data))
+        {
+            if (auth()->user()->subscribed('default')) {
+                auth()->user()->subscription('default')->swap(env('FREE_PLAN_STRIP_ID'));
+            } else {
+                auth()->user()->newSubscription('default', env('FREE_PLAN_STRIP_ID'))->create();
+            }
+            session()->flash('success', 'Your subscription plan has been updated successful.');
+            return redirect()->route('profile.show');
+        }
+        $data['intent'] = auth()->user()->createSetupIntent();
+        return view('profile.payment', $data);
+    }
+
     public function migrate(Request $request)
     {
         $this->validate($request, [
-            'subscription_as' => 'required'
+            'subscription_as' => 'required',
+            'payment_method' => 'required'
         ]);
 
         if (auth()->user()->subscribed('default')) {
             auth()->user()->subscription('default')->swap($request->subscription_as);
         } else {
-            auth()->user()->newSubscription('default', $request->subscription_as)->create();
+            auth()->user()->newSubscription('default', $request->subscription_as)->create($request->payment_method);
         }
         session()->flash('success', 'Your subscription plan has been updated successful.');
         return redirect()->route('profile.show');
