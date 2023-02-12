@@ -51,6 +51,7 @@ class ProfileController extends Controller
         ]);
 
         if (auth()->user()->subscribed('default')) {
+            auth()->user()->paymentMethods();
             auth()->user()->subscription('default')->swap($request->subscription_as);
         } else {
             auth()->user()->newSubscription('default', $request->subscription_as)->create($request->payment_method);

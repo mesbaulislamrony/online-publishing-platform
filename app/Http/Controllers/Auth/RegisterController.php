@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -72,7 +71,6 @@ class RegisterController extends Controller
 
         try {
             $user = User::create($data);
-            $user->createAsStripeCustomer();
             $user->newSubscription('default', env('FREE_PLAN_STRIP_ID'))->create();
             return $user;
         } catch (\Throwable $throwable) {
