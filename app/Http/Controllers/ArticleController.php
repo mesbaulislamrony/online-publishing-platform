@@ -34,6 +34,11 @@ class ArticleController extends Controller
                     return redirect()->route('profile.show');
                 }
             }
+        } else {
+            if (Article::dailyCounter()->count() >= 2) {
+                session()->flash('failed', 'Your daily limit is over. Please upgrade your subscription plan.');
+                return redirect()->route('profile.show');
+            }
         }
         $data['published_at'] = Carbon::now()->format('Y-m-d\TH:i');
         return view('article.create', $data);
